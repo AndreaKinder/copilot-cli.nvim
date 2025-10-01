@@ -1,6 +1,6 @@
-# gemini-cli
+# copilot-cli
 
-[![Mentioned in Awesome Gemini CLI](https://awesome.re/mentioned-badge.svg)](https://github.com/Piebald-AI/awesome-gemini-cli)
+[![Mentioned in Awesome Gemini CLI](https://awesome.re/mentioned-badge.svg)](https://github.com/Piebald-AI/awesome-copilot-cli)
 
 A Neovim plugin to seamlessly integrate the Gemini CLI.
 
@@ -9,8 +9,8 @@ A Neovim plugin to seamlessly integrate the Gemini CLI.
 ## Features
 
 - Toggle the Gemini CLI in a split window (vertical or horizontal).
-- Automatically checks if the `gemini` CLI is installed on startup.
-- Prompts to install the `gemini` CLI if it's missing.
+- Automatically checks if the `copilot` CLI is installed on startup.
+- Prompts to install the `copilot` CLI if it's missing.
 - Sets the `EDITOR` environment variable to `nvim` for the Gemini CLI session, so you can use Neovim to edit files from within Gemini.
 
 ## Requirements
@@ -24,9 +24,9 @@ A Neovim plugin to seamlessly integrate the Gemini CLI.
 
 ```lua
 {
-  "jonroosevelt/gemini-cli.nvim",
+  "jonroosevelt/copilot-cli.nvim",
   config = function()
-    require("gemini").setup({
+    require("copilot").setup({
       split_direction = "horizontal", -- optional: "vertical" (default) or "horizontal"
     })
   end,
@@ -37,9 +37,9 @@ A Neovim plugin to seamlessly integrate the Gemini CLI.
 
 ```lua
 use {
-  "jonroosevelt/gemini-cli.nvim",
+  "jonroosevelt/copilot-cli.nvim",
   config = function()
-    require("gemini").setup({
+    require("copilot").setup({
       split_direction = "horizontal", -- optional: "vertical" (default) or "horizontal"
     })
   end,
@@ -49,13 +49,13 @@ use {
 ### [vim-plug](https://github.com/junegunn/vim-plug)
 
 ```vim
-Plug 'jonroosevelt/gemini-cli.nvim'
+Plug 'AndreaKinder/copilot-cli.nvim'
 ```
 
 And then in your `init.lua`:
 
 ```lua
-require('gemini').setup()
+require('copilot').setup()
 ```
 
 ## Configuration
@@ -63,7 +63,7 @@ require('gemini').setup()
 The plugin can be configured with the following options:
 
 ```lua
-require('gemini').setup({
+require('copilot').setup({
   split_direction = "horizontal", -- "vertical" (default) or "horizontal"
 })
 ```
@@ -77,16 +77,18 @@ require('gemini').setup({
 ### Examples
 
 #### Vertical Split (Default)
+
 ```lua
-require('gemini').setup() -- or
-require('gemini').setup({
+require('copilot').setup() -- or
+require('copilot').setup({
   split_direction = "vertical"
 })
 ```
 
 #### Horizontal Split
+
 ```lua
-require('gemini').setup({
+require('copilot').setup({
   split_direction = "horizontal"
 })
 ```
@@ -96,4 +98,4 @@ require('gemini').setup({
 - Use the keymap `<leader>og` to open and close the Gemini CLI window.
 - In visual mode, select one or more lines and use the keymap `<leader>sg` to send the selected text to the Gemini CLI. If the CLI window is not open, a floating message will prompt you to open it first.
 
-When you first run the plugin, it will check if you have the `gemini` CLI installed. If not, it will prompt you to install it.
+When you first run the plugin, it will check if you have the `copilot` CLI installed. If not, it will prompt you to install it.

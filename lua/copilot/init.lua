@@ -13,7 +13,7 @@ local state = {
 	chan_id = nil,
 }
 
-local function close_gemini_window()
+local function close_copilot_window()
 	if state.winnr and vim.api.nvim_win_is_valid(state.winnr) then
 		vim.api.nvim_win_close(state.winnr, true)
 	end
@@ -22,7 +22,7 @@ local function close_gemini_window()
 	state.chan_id = nil
 end
 
-local function open_gemini_window()
+local function open_copilot_window()
 	-- If the window is already open, just focus it.
 	if state.winnr and vim.api.nvim_win_is_valid(state.winnr) then
 		vim.api.nvim_set_current_win(state.winnr)
@@ -39,9 +39,9 @@ local function open_gemini_window()
 	vim.cmd("setlocal buftype=nofile bufhidden=hide noswapfile")
 	state.winnr = vim.api.nvim_get_current_win()
 	state.bufnr = vim.api.nvim_get_current_buf()
-	vim.api.nvim_buf_set_name(state.bufnr, "gemini_cli")
+	vim.api.nvim_buf_set_name(state.bufnr, "copilot_cli")
 
-	state.chan_id = vim.fn.termopen("gemini", {
+	state.chan_id = vim.fn.termopen("copilot", {
 		env = { ["EDITOR"] = "nvim" },
 		on_exit = function()
 			-- Check if the window is still valid before trying to close it
@@ -58,11 +58,11 @@ local function open_gemini_window()
 	})
 end
 
-function M.toggle_gemini_cli()
+function M.toggle_copilot_cli()
 	if state.winnr and vim.api.nvim_win_is_valid(state.winnr) then
-		close_gemini_window()
+		close_copilot_window()
 	else
-		open_gemini_window()
+		open_copilot_window()
 	end
 end
 
@@ -96,7 +96,7 @@ local function show_floating_message(message)
 	end, 3000)
 end
 
-function M.send_to_gemini()
+function M.send_to_copilot()
 	-- Check if the Gemini window is open and the channel is available.
 	if not (state.winnr and vim.api.nvim_win_is_valid(state.winnr) and state.chan_id) then
 		show_floating_message("Gemini CLI is not running. Please open it with <leader>og first.")
@@ -139,30 +139,30 @@ function M.setup(opts)
 	-- Merge user config with defaults
 	config = vim.tbl_deep_extend("force", default_config, opts or {})
 	
-	if vim.fn.executable("gemini") == 1 then
+	if vim.fn.executable("copilot") == 1 then
 		vim.api.nvim_set_keymap(
 			"n",
 			"<leader>og",
-			'<cmd>lua require("gemini").toggle_gemini_cli()<CR>',
+			'<cmd>lua require("copilot").toggle_copilot_cli()<CR>',
 			{ noremap = true, silent = true, desc = "Toggle Gemini CLI" }
 		)
 		vim.api.nvim_set_keymap(
 			"v",
 			"<leader>sg",
-			':<C-U>lua require("gemini").send_to_gemini()<CR>',
+			':<C-U>lua require("copilot").send_to_copilot()<CR>',
 			{ noremap = true, silent = true, desc = "Send selection to Gemini" }
 		)
 	else
 		local answer = vim.fn.input("Gemini CLI not found. Install it now? (y/n): ")
 		if answer:lower() == "y" then
-			local cmd = "npm install -g @google/gemini-cli"
+			local cmd = "npm install -g @google/copilot-cli"
 			vim.fn.termopen(cmd, {
 				on_exit = function()
 					vim.notify("Gemini CLI installation finished. Please restart Neovim to use the plugin.")
 				end,
 			})
 		else
-			vim.notify("Gemini CLI not found. The gemini.nvim plugin will not be loaded.", vim.log.levels.WARN)
+			vim.notify("Gemini CLI not found. The copilot.nvim plugin will not be loaded.", vim.log.levels.WARN)
 		end
 	end
 end
