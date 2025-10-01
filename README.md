@@ -1,10 +1,10 @@
 # copilot-cli
 ## Features
 
-- Toggle the Gemini CLI in a split window (vertical or horizontal).
+- Toggle the Copilot CLI in a split window (vertical or horizontal).
 - Automatically checks if the `copilot` CLI is installed on startup.
 - Prompts to install the `copilot` CLI if it's missing.
-- Sets the `EDITOR` environment variable to `nvim` for the Gemini CLI session, so you can use Neovim to edit files from within Gemini.
+- Sets the `EDITOR` environment variable to `nvim` for the Copilot CLI session, so you can use Neovim to edit files from within Copilot.
 
 ## Requirements
 
