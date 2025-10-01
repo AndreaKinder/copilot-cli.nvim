@@ -97,9 +97,9 @@ local function show_floating_message(message)
 end
 
 function M.send_to_copilot()
-	-- Check if the Gemini window is open and the channel is available.
+	-- Check if the Copilot window is open and the channel is available.
 	if not (state.winnr and vim.api.nvim_win_is_valid(state.winnr) and state.chan_id) then
-		show_floating_message("Gemini CLI is not running. Please open it with <leader>og first.")
+		show_floating_message("Copilot CLI is not running. Please open it with <leader>oc first.")
 		return
 	end
 
@@ -139,30 +139,30 @@ function M.setup(opts)
 	-- Merge user config with defaults
 	config = vim.tbl_deep_extend("force", default_config, opts or {})
 	
-	if vim.fn.executable("copilot") == 1 then
+	if vim.fn.executable("copilot-cli") == 1 then
 		vim.api.nvim_set_keymap(
 			"n",
-			"<leader>og",
+			"<leader>oc",
 			'<cmd>lua require("copilot").toggle_copilot_cli()<CR>',
 			{ noremap = true, silent = true, desc = "Toggle Gemini CLI" }
 		)
 		vim.api.nvim_set_keymap(
 			"v",
 			"<leader>sg",
-			':<C-U>lua require("copilot").send_to_copilot()<CR>',
-			{ noremap = true, silent = true, desc = "Send selection to Gemini" }
+			':<C-U>lua require("copilot-cli").send_to_copilot()<CR>',
+			{ noremap = true, silent = true, desc = "Send selection to Copilot" }
 		)
 	else
-		local answer = vim.fn.input("Gemini CLI not found. Install it now? (y/n): ")
+		local answer = vim.fn.input("Copilot CLI not found. Install it now? (y/n): ")
 		if answer:lower() == "y" then
-			local cmd = "npm install -g @google/copilot-cli"
+			local cmd = "npm install -g @github/copilot"
 			vim.fn.termopen(cmd, {
 				on_exit = function()
-					vim.notify("Gemini CLI installation finished. Please restart Neovim to use the plugin.")
+					vim.notify("Copilot CLI installation finished. Please restart Neovim to use the plugin.")
 				end,
 			})
 		else
-			vim.notify("Gemini CLI not found. The copilot.nvim plugin will not be loaded.", vim.log.levels.WARN)
+			vim.notify("Copilot CLI not found. The copilot.nvim plugin will not be loaded.", vim.log.levels.WARN)
 		end
 	end
 end
