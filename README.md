@@ -24,7 +24,7 @@ A Neovim plugin to seamlessly integrate the Gemini CLI.
 
 ```lua
 {
-  "jonroosevelt/copilot-cli.nvim",
+  "andreakinder/copilot-cli.nvim",
   config = function()
     require("copilot").setup({
       split_direction = "horizontal", -- optional: "vertical" (default) or "horizontal"
@@ -37,7 +37,7 @@ A Neovim plugin to seamlessly integrate the Gemini CLI.
 
 ```lua
 use {
-  "jonroosevelt/copilot-cli.nvim",
+  "andreakinder/copilot-cli.nvim",
   config = function()
     require("copilot").setup({
       split_direction = "horizontal", -- optional: "vertical" (default) or "horizontal"
@@ -49,7 +49,7 @@ use {
 ### [vim-plug](https://github.com/junegunn/vim-plug)
 
 ```vim
-Plug 'AndreaKinder/copilot-cli.nvim'
+Plug 'andreakinder/copilot-cli.nvim'
 ```
 
 And then in your `init.lua`:
