@@ -19,20 +19,18 @@
 {
   "andreakinder/copilot-cli.nvim",
   config = function()
-    require("copilot").setup({
+    require("copilot-cli").setup({
       split_direction = "horizontal", -- optional: "vertical" (default) or "horizontal"
     })
   end,
 }
 ```
 
-### [packer.nvim](https://github.com/wbthomason/packer.nvim)
-
 ```lua
 use {
   "andreakinder/copilot-cli.nvim",
   config = function()
-    require("copilot").setup({
+    require("copilot-cli").setup({
       split_direction = "horizontal", -- optional: "vertical" (default) or "horizontal"
     })
   end,
@@ -48,7 +46,7 @@ Plug 'andreakinder/copilot-cli.nvim'
 And then in your `init.lua`:
 
 ```lua
-require('copilot').setup()
+require('copilot-cli').setup()
 ```
 
 ## Configuration
@@ -56,7 +54,7 @@ require('copilot').setup()
 The plugin can be configured with the following options:
 
 ```lua
-require('copilot').setup({
+require('copilot-cli').setup({
   split_direction = "horizontal", -- "vertical" (default) or "horizontal"
 })
 ```
@@ -72,8 +70,8 @@ require('copilot').setup({
 #### Vertical Split (Default)
 
 ```lua
-require('copilot').setup() -- or
-require('copilot').setup({
+require('copilot-cli').setup() -- or
+require('copilot-cli').setup({
   split_direction = "vertical"
 })
 ```
@@ -81,7 +79,7 @@ require('copilot').setup({
 #### Horizontal Split
 
 ```lua
-require('copilot').setup({
+require('copilot-cli').setup({
   split_direction = "horizontal"
 })
 ```
